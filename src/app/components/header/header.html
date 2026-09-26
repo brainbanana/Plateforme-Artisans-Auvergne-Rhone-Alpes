@@ -1,0 +1,94 @@
+<header class="header">
+
+  <div class="header__container">
+
+    <a
+      class="header__logo"
+      routerLink="/"
+      (click)="fermerMenu()"
+    >
+      <img
+        src="/images/Logo.png"
+        alt="Plateforme Artisans Auvergne-Rhône-Alpes"
+      >
+    </a>
+
+    <!-- Bouton du menu mobile -->
+    <button
+      type="button"
+      class="header__menu-button"
+      aria-label="Menu de navigation"
+      aria-controls="navigation-principale"
+      [attr.aria-expanded]="menuOuvert"
+      (click)="basculerMenu()"
+    >
+      <span aria-hidden="true">☰</span>
+    </button>
+
+    <div class="header__right" [class.header__right--open]="menuOuvert">
+
+      <nav
+        id="navigation-principale"
+        class="header__nav"
+        aria-label="Navigation principale"
+      >
+        <a
+          routerLink="/artisans"
+          [queryParams]="{ categorie: 'Bâtiment' }"
+          (click)="fermerMenu()"
+        >
+          Bâtiment
+        </a>
+
+        <a
+          routerLink="/artisans"
+          [queryParams]="{ categorie: 'Services' }"
+          (click)="fermerMenu()"
+        >
+          Services
+        </a>
+
+        <a
+          routerLink="/artisans"
+          [queryParams]="{ categorie: 'Fabrication' }"
+          (click)="fermerMenu()"
+        >
+          Fabrication
+        </a>
+
+        <a
+          routerLink="/artisans"
+          [queryParams]="{ categorie: 'Alimentation' }"
+          (click)="fermerMenu()"
+        >
+          Alimentation
+        </a>
+      </nav>
+
+      <form
+        class="header__search"
+        role="search"
+        (ngSubmit)="lancerRecherche()"
+      >
+
+        <input
+          type="search"
+          name="recherche"
+          aria-label="Rechercher un artisan"
+          [(ngModel)]="recherche"
+        >
+
+        <button
+          type="submit"
+          aria-label="Lancer la recherche"
+        >
+          <span aria-hidden="true">⌕</span>
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</header>

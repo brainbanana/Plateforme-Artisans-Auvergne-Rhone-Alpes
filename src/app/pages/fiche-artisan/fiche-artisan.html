@@ -1,0 +1,271 @@
+<main class="fiche-artisan">
+
+  @if (artisan) {
+
+    <!-- Présentation de l'artisan -->
+
+    <section class="fiche-artisan__presentation">
+
+      <div class="fiche-artisan__container">
+
+        <!-- Informations de l'artisan -->
+
+        <div class="fiche-artisan__infos">
+
+          <h1>{{ artisan.name }}</h1>
+
+          <p class="fiche-artisan__specialite">
+            {{ artisan.specialty }}
+          </p>
+
+          <p class="fiche-artisan__ville">
+            📍 {{ artisan.location }}
+          </p>
+
+          <p class="fiche-artisan__note">
+            ⭐ {{ artisan.note }}/5
+          </p>
+
+          <button
+            type="button"
+            class="fiche-artisan__button"
+            (click)="afficherFormulaire()"
+            [attr.aria-expanded]="formulaireVisible"
+            aria-controls="contact-artisan"
+          >
+            Contacter l'artisan
+          </button>
+
+          @if (artisan.website?.trim()) {
+            <p class="fiche-artisan__website">
+
+              <strong>Site internet :</strong>
+
+              <a
+               [href]="artisan.website"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="fiche-artisan__website-link"
+              >
+
+                Visiter le site
+              </a>
+            </p>
+          }
+
+        </div>
+
+        <!-- Photographie de l'artisan -->
+
+        <div class="fiche-artisan__image">
+
+          <img
+            [src]="artisan.image"
+            [alt]="'Photographie illustrant le métier de ' + artisan.specialty"
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- À propos de l'artisan -->
+
+    <section class="fiche-artisan__about">
+
+      <div class="fiche-artisan__about-container">
+
+        <h2>À propos</h2>
+
+        <p>
+          {{ artisan.about }}
+        </p>
+
+        <div class="fiche-artisan__specialites">
+
+          <h3>Spécialités :</h3>
+
+          <p>{{ artisan.specialty }}</p>
+
+        </div>
+
+      </div>
+
+    </section>
+    
+      <!-- Formulaire de contact de l'artisan -->
+
+    @if (formulaireVisible) {
+
+    <section class="fiche-artisan__contact" id="contact-artisan" aria-labelledby="contact-title">
+
+      <div class="fiche-artisan__contact-container">
+
+        <h2 id="contact-title">
+          Contacter {{ artisan.name }}
+        </h2>
+
+        <p>
+          Vous souhaitez contacter cet artisan ?
+          Remplissez le formulaire ci-dessous.
+        </p>
+
+        <form 
+          class="fiche-artisan__form"
+          #formulaire="ngForm"
+          (ngSubmit)="formulaire.valid && onSubmit()"
+          ngNativeValidate
+        >
+
+          <div class="fiche-artisan__field">
+
+            <label for="contact-name">
+              Nom et prénom
+            </label>
+
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              autocomplete="name"
+              [(ngModel)]="contactForm.name"
+              required
+            >
+
+          </div>
+
+          <div class="fiche-artisan__field">
+
+            <label for="contact-email">
+              Adresse e-mail
+            </label>
+
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              autocomplete="email"
+              [(ngModel)]="contactForm.email"
+              required
+            >
+
+          </div>
+
+          <div class="fiche-artisan__field">
+
+            <label for="contact-subject">
+              Objet de la demande
+            </label>
+
+            <input
+              type="text"
+              id="contact-subject"
+              name="subject"
+              [(ngModel)]="contactForm.subject"
+              required
+            >
+
+          </div>
+
+          <div class="fiche-artisan__field">
+
+            <label for="contact-message">
+              Votre message
+            </label>
+
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="6"
+              [(ngModel)]="contactForm.message"
+              required
+            ></textarea>
+
+            <p class="fiche-artisan__contact-info">
+              Votre demande sera enregistrée dans notre messagerie
+              de test. Aucun e-mail ne sera envoyé directement
+              à l'artisan pendant cette démonstration.
+            </p>
+
+          </div>
+
+          <button
+            type="submit"
+            class="fiche-artisan__submit"
+            [disabled]="envoiEnCours"
+          > 
+            @if (envoiEnCours) {
+              Envoi en cours...
+            } @else {
+              Envoyer le message
+            }
+          </button>
+
+           <!-- Message d'erreur -->
+
+          @if (messageErreur) {
+
+            <p
+              class="fiche-artisan__erreur"
+              role="alert"
+            >
+              Veuillez remplir correctement tous les champs.
+              Les champs ne peuvent pas contenir uniquement des espaces.
+            </p>
+
+          }
+
+          <!-- Message de confirmation -->
+
+          @if (messageEnvoye) {
+
+            <p
+              class="fiche-artisan__confirmation"
+              role="status"
+            >
+              Votre demande a bien été envoyée.
+            </p>
+          }
+
+          @if (erreurEnvoi) {
+            <p 
+              class="fiche-artisan__erreur"
+              role="alert"
+            >
+              Une erreur est survenue lors de l'envoi.
+              Veuillez réessayer.
+            </p>
+          }
+          @if (limiteEnvoisAtteinte) {
+            <p 
+              class="fiche-artisan__erreur" 
+              role="alert"
+            >
+              Trop de demandes ont été envoyées.
+              Veuillez réessayer plus tard.
+            </p>
+          }
+          
+          <p class="fiche-artisan__contact-consent">
+            En envoyant ce formulaire, vous acceptez que vos informations soient utilisées pour répondre à votre demande.
+          </p>
+
+        </form>
+
+      </div>
+
+    </section>
+    }
+
+  } @else {
+
+    <section class="fiche-artisan__message">
+
+      <p>Chargement de la fiche artisan...</p>
+
+    </section>
+
+  }
+
+</main>

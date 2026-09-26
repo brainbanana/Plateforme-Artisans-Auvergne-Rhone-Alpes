@@ -1,0 +1,55 @@
+.comment-trouver {
+  background-color: #F1F8FC;
+  padding: 20px 20px 30px;
+  text-align: center;
+
+  h2 {
+    color: #384050;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 20px;
+  }
+
+  .etapes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
+    p {
+      color: #00497C;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+/* Étapes sur téléphone et tablette */
+
+@media (max-width: 1023px) {
+  .comment-trouver .etapes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 12px;
+  }
+
+  .comment-trouver .etapes p {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+}

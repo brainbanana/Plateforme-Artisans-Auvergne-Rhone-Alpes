@@ -17,6 +17,11 @@
     "@angular/forms": "^22.1.0",
     "@angular/platform-browser": "^22.1.0",
     "@angular/router": "^22.1.0",
+    "@fortawesome/fontawesome-free": "^7.3.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "nodemailer": "^10.0.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -24,8 +29,14 @@
     "@angular/build": "^22.1.5",
     "@angular/cli": "^22.1.5",
     "@angular/compiler-cli": "^22.1.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.2",
+    "@types/nodemailer": "^8.0.2",
     "jsdom": "^28.0.0",
+    "maildev": "^3.0.0",
     "prettier": "^3.8.1",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.2",
     "vitest": "^4.0.8"
   }

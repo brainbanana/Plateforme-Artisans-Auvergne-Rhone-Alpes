@@ -1,0 +1,126 @@
+<main class="liste-artisans">
+
+  <!-- Bandeau de présentation -->
+
+  <section class="liste-artisans__intro">
+
+    <h1>Les artisans de la région</h1>
+
+    <p>
+      Découvrez les artisans de la région Auvergne-Rhône-Alpes
+      et trouvez le savoir-faire qu'il vous faut.
+    </p>
+
+  </section>
+
+  <!-- Section des artisans -->
+
+  <section class="liste-artisans__results">
+
+    <div class="liste-artisans__container">
+
+      <div class="artisans-grid">
+
+        @for (artisan of artisans; track artisan.id) {
+
+          <article class="artisan-card">
+
+            <!-- Informations de l'artisan -->
+
+            <div class="artisan-card__content">
+
+              <h2>{{ artisan.name }}</h2>
+
+              <p class="artisan-card__specialite">
+                {{ artisan.specialty }}
+              </p>
+
+              <p class="artisan-card__ville">
+                📍 {{ artisan.location }}
+              </p>
+
+              <a
+                [routerLink]="['/artisan', artisan.id]"
+                class="artisan-card__button"
+              >
+                Voir le profil
+              </a>
+
+              <p class="artisan-card__note">
+                ⭐ {{ artisan.note }}/5
+              </p>
+
+            </div>
+
+            <!-- Photographie de l'artisan -->
+
+            <div class="artisan-card__image">
+
+              <img
+                [src]="artisan.image"
+                [alt]="'Photographie de ' + artisan.name"
+                loading="lazy"
+              >
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+  
+  <!-- Comment trouver un artisan ? -->
+
+  <app-comment-trouver></app-comment-trouver>
+
+  <!-- Pourquoi choisir un artisan local ? -->
+
+  <section class="pourquoi-local">
+
+    <h2>Pourquoi choisir un artisan local ?</h2>
+
+    <div class="pourquoi-local__container">
+
+      <div class="pourquoi-local__card">
+
+        <h3>🏠 Un savoir-faire local</h3>
+
+        <p>
+          Des artisans qui valorisent leur savoir-faire
+          et les traditions de notre région.
+        </p>
+
+      </div>
+
+      <div class="pourquoi-local__card">
+
+        <h3>🤝 Des échanges de proximité</h3>
+
+        <p>
+          Un contact direct avec des professionnels
+          proches de chez vous.
+        </p>
+
+      </div>
+
+      <div class="pourquoi-local__card">
+
+        <h3>⭐ Des artisans de confiance</h3>
+
+        <p>
+          Des professionnels sélectionnés
+          pour leur sérieux et leur qualité.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>

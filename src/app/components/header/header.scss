@@ -1,0 +1,263 @@
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #F1F8FC;
+  height: 105px;
+}
+
+.header__container {
+  width: 100%;
+  height: 100%;
+
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+// Logo à gauche
+
+.header__logo {
+  display: block;
+  flex-shrink: 0;
+
+  img {
+    display: block;
+    width: 240px;
+    height: auto;
+  }
+}
+
+// Menu et recherche à droite
+
+.header__right {
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
+  max-width: 700px;
+
+  gap: 12px;
+
+  margin-right: 75px;
+}
+
+// Navigation
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  margin: 0;
+
+  a {
+    color: #00497C;
+    text-decoration: none;
+
+    font-family: 'Graphik', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+
+    &:hover {
+      color: #0074C7;
+    }
+  }
+}
+
+// Barre de recherche
+
+.header__search {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 32px;
+
+  border: 1px solid #384050;
+  border-radius: 2px;
+
+  box-sizing: border-box;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    padding: 0 10px;
+
+    border: none;
+    outline: none;
+
+    background-color: transparent;
+
+    font-family: 'Graphik', sans-serif;
+    font-size: 14px;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 100%;
+
+    border: none;
+    background-color: transparent;
+
+    color: #00497C;
+    font-size: 20px;
+
+    cursor: pointer;
+
+    &:hover {
+      color: #0074C7;
+    }
+  }
+}
+
+/* Bouton du menu mobile : masqué sur ordinateur */
+
+.header__menu-button {
+  display: none;
+}
+
+/* Header sur téléphone */
+
+@media (max-width: 767px) {
+
+  .header {
+    height: 70px;
+  }
+
+  .header__container {
+    position: relative;
+    padding: 0 15px;
+  }
+
+  .header__logo img {
+    width: 150px;
+    height: auto;
+  }
+
+  /* Bouton hamburger */
+
+  .header__menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    background-color: transparent;
+    color: #00497C;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .header__menu-button:focus-visible {
+    outline: 3px solid #0074C7;
+    outline-offset: 2px;
+  }
+
+  /* Menu fermé par défaut */
+
+  .header__right {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 15px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+    border-bottom: 1px solid #F1F8FC;
+    box-shadow: 0 4px 8px rgba(0, 73, 124, 0.1);
+  }
+
+  /* Menu ouvert après un clic */
+
+  .header__right--open {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .header__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .header__nav a {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  /* Recherche dans le menu mobile */
+
+  .header__search {
+    width: 100%;
+    height: 40px;
+  }
+}
+/* Header sur tablette */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .header {
+    height: 85px;
+  }
+
+  .header__container {
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .header__logo img {
+    width: 180px;
+  }
+
+  .header__right {
+    flex: 1;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin-right: 0;
+    gap: 10px;
+  }
+
+  .header__nav {
+    gap: 12px;
+  }
+
+  .header__nav a {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .header__search {
+    height: 32px;
+  }
+
+}
