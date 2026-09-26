@@ -1,59 +1,246 @@
-# PlateformeArtisansAuvergneRhoneAlpes
+# Plateforme Artisans Auvergne-Rhône-Alpes
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.5.
+Application web permettant de rechercher et de découvrir des artisans de la région Auvergne-Rhône-Alpes.
 
-## Development server
+Ce projet a été réalisé dans le cadre de ma formation de développeur web à partir d'un cahier des charges et de maquettes conçues sur Figma.
 
-To start a local development server, run:
+## Objectifs du projet
+
+La plateforme permet notamment de :
+
+- rechercher un artisan par localisation ;
+- consulter la liste des artisans de la région ;
+- rechercher des artisans par métier et catégorie ;
+- consulter la fiche détaillée d'un artisan ;
+- contacter un artisan via un formulaire ;
+- effectuer une demande depuis la page d'accueil ;
+- consulter les artisans du mois ;
+- naviguer sur une interface responsive adaptée aux ordinateurs, tablettes et mobiles.
+
+## Technologies utilisées
+
+### Frontend
+
+- Angular 22
+- TypeScript
+- HTML5
+- SCSS
+- Bootstrap
+- Font Awesome
+- RxJS
+
+### Backend
+
+- Node.js
+- Express
+- Nodemailer
+- CORS
+- Express Rate Limit
+- MailDev pour tester localement les envois d'e-mails
+
+### Outils
+
+- Visual Studio Code
+- Figma
+- Git
+- GitHub
+- W3C HTML Validator
+- W3C CSS Validator
+
+## Installation
+
+Cloner le dépôt :
 
 ```bash
-ng serve
+git clone https://github.com/brainbanana/Plateforme-Artisans-Auvergne-Rhone-Alpes.git
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Se placer dans le dossier du projet :
 
 ```bash
-ng generate component component-name
+cd Plateforme-Artisans-Auvergne-Rhone-Alpes
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Installer les dépendances :
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
+## Lancer l'application Angular
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+L'application est ensuite accessible à l'adresse :
 
-## Running unit tests
+```text
+http://localhost:4200/
+```
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Backend et formulaires de contact
+
+Le projet possède un serveur Node.js / Express utilisé pour traiter les formulaires de contact.
+
+Le serveur peut être lancé avec :
 
 ```bash
-ng test
+npm run server
 ```
 
-## Running end-to-end tests
+Il fonctionne localement sur :
 
-For end-to-end (e2e) testing, run:
+```text
+http://localhost:3000
+```
+
+Les e-mails sont interceptés en environnement de développement avec MailDev.
+
+Lancer MailDev :
 
 ```bash
-ng e2e
+npm run maildev
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Interface MailDev :
 
-## Additional Resources
+```text
+http://localhost:1080
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Serveur SMTP de test :
+
+```text
+localhost:1025
+```
+
+Aucun e-mail réel n'est envoyé aux artisans pendant la démonstration.
+
+## Données des artisans
+
+Les données utilisées par l'application sont stockées dans :
+
+```text
+public/data/datas.json
+```
+
+Le fichier contient les informations nécessaires à l'affichage des artisans : identité, spécialité, localisation, département, note, présentation, catégorie et image.
+
+## Structure principale
+
+```text
+src/app/
+├── components/
+│   ├── comment-trouver/
+│   ├── footer/
+│   └── header/
+│
+├── pages/
+│   ├── accessibilite/
+│   ├── accueil/
+│   ├── cookies/
+│   ├── donnees-personnelles/
+│   ├── fiche-artisan/
+│   ├── liste-artisans/
+│   ├── mentions-legales/
+│   └── page-404/
+│
+└── services/
+    ├── artisan.ts
+    └── contact.ts
+```
+
+Le backend se trouve dans :
+
+```text
+server/server.ts
+```
+
+## Responsive design
+
+L'interface a été développée selon une approche responsive et adaptée aux principaux formats :
+
+- mobile ;
+- tablette ;
+- ordinateur.
+
+Les différentes pages ont été ajustées pour conserver une navigation et une présentation cohérentes quelle que soit la taille de l'écran.
+
+## Accessibilité
+
+Plusieurs bonnes pratiques d'accessibilité ont été mises en place :
+
+- structure HTML sémantique ;
+- textes alternatifs pour les images ;
+- labels associés aux champs de formulaires ;
+- attributs ARIA lorsque nécessaires ;
+- navigation et boutons clairement identifiables ;
+- messages de confirmation et d'erreur accessibles.
+
+## SEO
+
+Le projet comporte notamment :
+
+- une langue de document définie en français ;
+- un titre de page descriptif ;
+- une meta description ;
+- des titres adaptés aux différentes pages ;
+- des textes alternatifs pour les images ;
+- une structure HTML sémantique.
+
+## Sécurité
+
+Plusieurs mesures ont été mises en place côté serveur et dans les formulaires :
+
+- validation des données reçues par le backend ;
+- limitation de la taille des requêtes JSON ;
+- limitation du nombre de requêtes sur les formulaires ;
+- contrôle de la longueur des données ;
+- validation des adresses e-mail ;
+- configuration CORS ;
+- utilisation de `noopener noreferrer` pour les liens externes ouverts dans un nouvel onglet ;
+- exclusion des fichiers d'environnement avec `.gitignore`.
+
+## Validation W3C
+
+Le projet a été contrôlé avec les validateurs du W3C.
+
+### Validation HTML
+
+Aucune erreur ni aucun avertissement détecté.
+
+![Validation W3C HTML](docs/validations/validation-w3c-html.png)
+
+### Validation CSS
+
+Aucune erreur détectée avec le validateur CSS du W3C.
+
+![Validation W3C CSS](docs/validations/validation-w3c-css.png)
+
+## Build de production
+
+Le projet peut être compilé avec :
+
+```bash
+npm run build
+```
+
+Le build de production a été effectué sans erreur ni avertissement.
+
+![Build de production Angular](docs/validations/build-production.png)
+
+## Pages principales
+
+L'application comporte notamment :
+
+- une page d'accueil ;
+- une liste des artisans ;
+- une fiche détaillée pour chaque artisan ;
+- des formulaires de contact ;
+- une page 404 personnalisée ;
+- les routes d'informations légales prévues par le cahier des charges.
+
+## Auteur
+
+Projet réalisé dans le cadre d'une formation de développeur web.
