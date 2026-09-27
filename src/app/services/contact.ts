@@ -35,7 +35,10 @@ export class ContactService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 
+    window.location.hostname === 'localhost'
+      ? 'http://localhost:3000/api'
+      : 'https://plateforme-artisans-backend.onrender.com/api';
 
   // Envoi du formulaire de la page d'accueil
   envoyerDemandeAccueil(

@@ -7,6 +7,8 @@ const app = express();
 
 const PORT = Number(process.env['PORT']) || 3000;
 
+const estEnProduction = process.env['RENDER'] === 'true';
+
 // Autoriser les requêtes provenant de notre application Angular et render
 app.use(cors({
   origin: [ 
@@ -130,6 +132,12 @@ app.post('/api/contact/accueil', limiteContact, async (req, res) => {
     return;
   }
 
+  if (estEnProduction) {
+    res.status(200).json ({
+      message: 'Formulaire disponible en démonstration locale avec MailDev.'
+    });
+  }
+
   try {
 
     await transporter.sendMail({
@@ -197,6 +205,12 @@ app.post('/api/contact/artisan', limiteContact, async (req, res) => {
     });
 
     return;
+  }
+
+  if (estEnProduction) {
+    res.status(200).json ({
+      message: 'Formulaire disponible en démonstration locale avec MailDev.'
+    });
   }
 
   try {
