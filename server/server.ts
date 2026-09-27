@@ -5,11 +5,14 @@ import { rateLimit } from 'express-rate-limit';
 
 const app = express();
 
-const PORT = 3000;
+const PORT = Number(process.env['PORT']) || 3000;
 
-// Autoriser les requêtes provenant de notre application Angular
+// Autoriser les requêtes provenant de notre application Angular et render
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: [ 
+    'http://localhost:4200',
+    'https://plateforme-artisans-auvergne-rhone-alpes.onrender.com'        
+    ]
 }));
 
 // Autoriser le serveur à recevoir des données JSON
