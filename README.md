@@ -4,6 +4,30 @@ Application web permettant de rechercher et de découvrir des artisans de la ré
 
 Ce projet a été réalisé dans le cadre de ma formation de développeur web à partir d'un cahier des charges et de maquettes conçues sur Figma.
 
+## Déploiement
+
+L'application est déployée sur Render.
+
+### Frontend
+
+L'application Angular est accessible en production à l'adresse :
+
+https://plateforme-artisans-auvergne-rhone-alpes.onrender.com
+
+### Backend
+
+L'API Node.js / Express est déployée à l'adresse :
+
+https://plateforme-artisans-backend.onrender.com
+
+Une route de test permet de vérifier le fonctionnement du serveur :
+
+https://plateforme-artisans-backend.onrender.com/api/test
+
+Le frontend et le backend sont déployés séparément sur Render.
+
+Une règle de réécriture (`/*` vers `/index.html`) est configurée sur le site statique afin de permettre le fonctionnement du routage Angular lors d'un accès direct à une URL ou après actualisation de la page.
+
 ## Objectifs du projet
 
 La plateforme permet notamment de :
@@ -44,6 +68,7 @@ La plateforme permet notamment de :
 - Figma
 - Git
 - GitHub
+- Render
 - W3C HTML Validator
 - W3C CSS Validator
 
@@ -69,6 +94,8 @@ npm install
 
 ## Lancer l'application Angular
 
+Lancer le serveur de développement Angular :
+
 ```bash
 npm start
 ```
@@ -83,7 +110,9 @@ http://localhost:4200/
 
 Le projet possède un serveur Node.js / Express utilisé pour traiter les formulaires de contact.
 
-Le serveur peut être lancé avec :
+### Fonctionnement en local
+
+Le serveur backend peut être lancé avec :
 
 ```bash
 npm run server
@@ -103,19 +132,32 @@ Lancer MailDev :
 npm run maildev
 ```
 
-Interface MailDev :
+L'interface MailDev est accessible à l'adresse :
 
 ```text
 http://localhost:1080
 ```
 
-Serveur SMTP de test :
+Le serveur SMTP de test utilise :
 
 ```text
 localhost:1025
 ```
 
-Aucun e-mail réel n'est envoyé aux artisans pendant la démonstration.
+Les formulaires peuvent ainsi être testés localement sans envoyer de véritables e-mails.
+
+### Fonctionnement en production
+
+En production, le frontend communique avec l'API Express déployée sur Render.
+
+MailDev étant un outil de développement local, aucun serveur SMTP MailDev n'est utilisé sur Render.
+
+Les formulaires restent fonctionnels pour la démonstration de l'interface et de la communication entre le frontend Angular et le backend Express, mais aucun e-mail réel n'est envoyé en production.
+
+Le service Angular sélectionne automatiquement l'API appropriée selon l'environnement :
+
+- en local : `http://localhost:3000/api` ;
+- en production : `https://plateforme-artisans-backend.onrender.com/api`.
 
 ## Données des artisans
 
